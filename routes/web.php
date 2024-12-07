@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/paymentTypes',Controllers\PaymentTypeController::class);
     Route::resource('/genders',Controllers\GenderController::class);
     Route::resource('/days',Controllers\DayController::class);
+    Route::resource('/categories',Controllers\CategoryController::class);
 
 });
 

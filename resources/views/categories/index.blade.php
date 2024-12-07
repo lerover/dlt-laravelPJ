@@ -2,20 +2,20 @@
 @section('content')
     <!-- Start Content Area  -->
     <div class="container-fluid">
-        {{--input for days--}}
+        {{--input for categories--}}
         <div class="col-md-12">
-            <form action="{{url('/days')}}" method="POST">
+            <form action="{{url('/categories')}}" method="POST">
                 {{--@csrf--}}
                 {{csrf_field()}}
                 <div class="row align-items-end">
-                    {{--                   days--}}
+                    {{--                    categories--}}
                     <div class="col-md-4 form-group">
                         <label for="name">
                             Name <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="name" id="name" class="form-control form-control-sm rounded-0" placeholder="Enter Gender Type">
+                        <input type="text" name="name" id="name" class="form-control form-control-sm rounded-0" placeholder="Enter Category Name">
                     </div>
-                    {{--                    day--}}
+                    {{--                    status--}}
                     <div class="col-md-4 form-group">
                         <label for="status_id">
                             Status <span class="text-danger">*</span>
@@ -80,19 +80,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($days as $idx => $day)
+                @foreach($categories as $idx => $category)
                     <tr>
-                        <td><input type="checkbox" name="singlechecks" class="form-check-input singlechecks" value="{{$day->id}}"></td>
+                        <td><input type="checkbox" name="singlechecks" class="form-check-input singlechecks" value="{{$category->id}}"></td>
                         <td>{{++$idx}}</td>
-                        <td>{{$day->name}}</td>
-                        <td>{{$day->status->name}}</td>
-                        <td>{{$day->user->name}}</td>
-                        <td>{{$day->created_at->format("d M Y")}} {{$day->created_at->diffForHumans()}}</td>
-                        <td>{{$day->updated_at->format('d M Y')}}</td>
+                        <td>{{$category->name}}</td>
+                        <td>{{$category->status->name}}</td>
+                        <td>{{$category->user->name}}</td>
+                        <td>{{$category->created_at->format("d M Y")}} {{$category->created_at->diffForHumans()}}</td>
+                        <td>{{$category->updated_at->format('d M Y')}}</td>
                         <td>
                             <a href="javascript:void(0)" class="text-info"><i class="fas fa-pen"></i></a>
-                            <a href="javascript:void(0)" class="text-danger ms-3 delete-btn" data-idx='{{$idx}}' data-name="{{$day->name}}"><i class="fas fa-trash-alt"></i></a>
-                            <form action="{{route('days.destroy',$day->id)}}" method="post" id="formdelete-{{$idx}}">
+                            <a href="javascript:void(0)" class="text-danger ms-3 delete-btn" data-idx='{{$idx}}' data-name='{{$category->name}}'><i class="fas fa-trash-alt"></i></a>
+                            <form action="{{route('categories.destroy',$category->id)}}" method="post" id="formdelete-{{$idx}}">
                                 @csrf
                                 @method('DELETE')
                             </form>
@@ -106,6 +106,7 @@
             </table>
         </div>
     </div>
+    <!-- End Content Area  -->
 @endsection
 
 @section('styles')
@@ -128,7 +129,7 @@
 
             // bulk delete
             $('#selectalls').click(function(){
-                $('.singlechecks').prop('checked',$('#selectalls').prop('checked'))
+                $('.singlechecks').prop('checked',$('#selectalls').prop('checked'));
             })
         })
     </script>

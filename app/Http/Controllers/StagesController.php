@@ -64,7 +64,12 @@ class StagesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $user = Auth::user();
+        $stage = Stage::findOrFail($id);
+        $stage->name = $request['name'];
+        $stage->slug = Str::slug($request['name'], '-');
+        $stage->user_id = $user->id;
+        $stage->save();
     }
 
     /**

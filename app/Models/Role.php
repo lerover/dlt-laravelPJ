@@ -11,6 +11,7 @@ class Role extends Model
     protected $guarded = [];
     protected $table = 'roles';
     protected $fillable = [
+        'image',
         'name',
         'slug',
         'status_id',
@@ -22,6 +23,6 @@ class Role extends Model
     }
 
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }

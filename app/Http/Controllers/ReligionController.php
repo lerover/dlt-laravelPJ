@@ -35,6 +35,7 @@ class ReligionController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'status_id' => 'nullable|integer',
         ]);
 
         $religion = new Religion();

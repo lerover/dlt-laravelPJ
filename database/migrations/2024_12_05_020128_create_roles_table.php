@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string('image')->nullable();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('slug');
             $table->unsignedBigInteger('status_id')->default(3);
             $table->unsignedBigInteger('user_id');

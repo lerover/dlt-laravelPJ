@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::resource('/roles',Controllers\RoleController::class);
+
     Route::resource('/profiles', ProfileController::class);
     Route::resource('/statuses',Controllers\StatusesController::class);
     Route::resource('/types',Controllers\TypeController::class);
